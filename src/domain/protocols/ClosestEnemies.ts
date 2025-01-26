@@ -4,7 +4,7 @@ import { ScanPoint } from '../entities/ScanPoint';
 export class ClosestEnemies implements IProtocol {
   execute(scan: ScanPoint[]): ScanPoint | null {
     if (scan.length === 0) {
-      return null; // No hay puntos para analizar
+      return null;
     }
 
     return scan.reduce((closest: ScanPoint, point: ScanPoint) => {

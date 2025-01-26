@@ -14,7 +14,6 @@ export class DecideNextTargetUseCase {
     @inject('AvoidCrossfire') private avoidCrossfire: IProtocol,
     @inject('PrioritizeMech') private prioritizeMech: IProtocol
   ) {
-    // Registro de protocolos
     this.protocolRegistry = new Map([
       ['avoid-mech', this.avoidMech],
       ['closest-enemies', this.closestEnemies],
