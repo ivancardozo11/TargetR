@@ -2,11 +2,11 @@
   "name": "targetr",
   "version": "1.0.0",
   "description": "<div style=\"max-width: 600px; margin: 0 auto;\">\r  <p align=\"center\"> \r  <img src=\"TargetRLogo.png\" width=\"500\" height=\"400\" alt=\"Image\">\r </p>\r </div>",
-  "main": "dist/main.ts",
+  "main": "dist/server.ts",
   "scripts": {
     "build": "tsc",
-    "start": "tsc && node ./dist/main.js",
-    "dev": "nodemon src/main.ts",
+    "start": "tsc && node ./dist/server.js",
+    "dev": "nodemon src/server.ts",
     "lint": "eslint 'src/**/*.{ts,tsx}' --quiet",
     "test": "jest",
     "format": "prettier --write 'src/**/*.{ts,tsx,json,md}'"
@@ -20,11 +20,13 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.21.2",
+    "express-rate-limit": "^7.5.0",
     "helmet": "^8.0.0",
     "inversify": "^6.2.1",
     "reflect-metadata": "^0.2.2"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
     "@types/jest": "^29.5.14",
     "@types/jsonwebtoken": "^9.0.8",
