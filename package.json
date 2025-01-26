@@ -1,0 +1,44 @@
+{
+  "name": "targetr",
+  "version": "1.0.0",
+  "description": "<div style=\"max-width: 600px; margin: 0 auto;\">\r  <p align=\"center\"> \r  <img src=\"TargetRLogo.png\" width=\"500\" height=\"400\" alt=\"Image\">\r </p>\r </div>",
+  "main": "dist/main.ts",
+  "scripts": {
+    "build": "tsc",
+    "start": "tsc && node ./dist/main.js",
+    "dev": "nodemon src/main.ts",
+    "lint": "eslint 'src/**/*.{ts,tsx}' --quiet",
+    "test": "jest",
+    "format": "prettier --write 'src/**/*.{ts,tsx,json,md}'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ivancardozo11/TargetR.git"
+  },
+  "author": "Ivan Cardozo",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "helmet": "^8.0.0",
+    "inversify": "^6.2.1",
+    "reflect-metadata": "^0.2.2"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/jest": "^29.5.14",
+    "@types/jsonwebtoken": "^9.0.8",
+    "@typescript-eslint/eslint-plugin": "^8.21.0",
+    "@typescript-eslint/parser": "^8.21.0",
+    "dotenv": "^16.4.7",
+    "eslint": "^9.19.0",
+    "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-prettier": "^5.2.3",
+    "jest": "^29.7.0",
+    "nodemon": "^3.1.9",
+    "prettier": "^3.4.2",
+    "ts-jest": "^29.2.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.3"
+  }
+}
