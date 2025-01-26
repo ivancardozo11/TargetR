@@ -1,6 +1,5 @@
-import { ScanPoint } from "../entities/ScanPoint";
+import { ScanPoint } from '../entities/ScanPoint';
 
 export interface IProtocol {
-    execute(scan: ScanPoint[]): ScanPoint | null;
-  }
-  
+  execute(scan: ScanPoint[]): ScanPoint[];
+}

@@ -1,21 +1,16 @@
 import { IProtocol } from './IProtocol';
 import { ScanPoint } from '../entities/ScanPoint';
 
+function distance(x: number, y: number): number {
+  return Math.sqrt(x * x + y * y);
+}
+
 export class ClosestEnemies implements IProtocol {
-  execute(scan: ScanPoint[]): ScanPoint | null {
-    if (scan.length === 0) {
-      return null;
-    }
-
-    return scan.reduce((closest: ScanPoint, point: ScanPoint) => {
-      const closestDistance = Math.sqrt(
-        closest.coordinates.x ** 2 + closest.coordinates.y ** 2
-      );
-      const currentDistance = Math.sqrt(
-        point.coordinates.x ** 2 + point.coordinates.y ** 2
-      );
-
-      return currentDistance < closestDistance ? point : closest;
+  execute(scan: ScanPoint[]): ScanPoint[] {
+    return scan.slice().sort((a, b) => {
+      const distA = distance(a.coordinates.x, a.coordinates.y);
+      const distB = distance(b.coordinates.x, b.coordinates.y);
+      return distA - distB;
     });
   }
 }

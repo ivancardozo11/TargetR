@@ -5,7 +5,7 @@ import rateLimit from 'express-rate-limit';
 import radarRoutes from './adapters/routes/RadarRoutes';
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8888;
 
 app.use(helmet());
 app.use(cors());
@@ -18,7 +18,7 @@ const limiter = rateLimit({
 });
 app.use(limiter);
 
-app.use('/api', radarRoutes);
+app.use('/', radarRoutes);
 
 app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
   console.error(err.stack);

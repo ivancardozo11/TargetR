@@ -1,21 +1,16 @@
 import { IProtocol } from './IProtocol';
 import { ScanPoint } from '../entities/ScanPoint';
 
+function distance(x: number, y: number): number {
+  return Math.sqrt(x * x + y * y);
+}
+
 export class FurthestEnemies implements IProtocol {
-  execute(scan: ScanPoint[]): ScanPoint | null {
-    if (scan.length === 0) {
-      return null;
-    }
-
-    return scan.reduce((furthest: ScanPoint, point: ScanPoint) => {
-      const furthestDistance = Math.sqrt(
-        furthest.coordinates.x ** 2 + furthest.coordinates.y ** 2
-      );
-      const currentDistance = Math.sqrt(
-        point.coordinates.x ** 2 + point.coordinates.y ** 2
-      );
-
-      return currentDistance > furthestDistance ? point : furthest;
+  execute(scan: ScanPoint[]): ScanPoint[] {
+    return scan.slice().sort((a, b) => {
+      const distA = distance(a.coordinates.x, a.coordinates.y);
+      const distB = distance(b.coordinates.x, b.coordinates.y);
+      return distB - distA;
     });
   }
 }

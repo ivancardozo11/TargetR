@@ -24,10 +24,27 @@ export class DecideNextTargetUseCase {
     ]);
   }
 
+  private calculateDistance(x: number, y: number): number {
+    return Math.sqrt(x ** 2 + y ** 2);
+  }
+
+
+  private ensureNotEmpty(scanPoints: ScanPoint[], errorMessage: string): void {
+    if (scanPoints.length === 0) {
+      throw new Error(errorMessage);
+    }
+  }
+
+ 
   async execute(data: { protocols: string[]; scan: ScanPoint[] }): Promise<{ x: number; y: number } | null> {
     const { protocols, scan } = data;
 
-    let target: ScanPoint | null = null;
+    let filteredScan = scan.filter((point) => {
+      const distance = this.calculateDistance(point.coordinates.x, point.coordinates.y);
+      return distance <= 100;
+    });
+
+    this.ensureNotEmpty(filteredScan, 'No valid target found. All points are out of range.');
 
     for (const protocolName of protocols) {
       const protocol = this.protocolRegistry.get(protocolName);
@@ -35,14 +52,15 @@ export class DecideNextTargetUseCase {
         throw new Error(`Unsupported protocol: ${protocolName}`);
       }
 
-      target = protocol.execute(scan);
-      if (target) break;
+      filteredScan = protocol.execute(filteredScan);
+      this.ensureNotEmpty(filteredScan, `No valid target found after applying protocol: ${protocolName}`);
     }
 
+    const target = filteredScan[0];
     if (!target) {
       throw new Error('No valid target found.');
     }
 
-    return target.coordinates;
+    return { x: target.coordinates.x, y: target.coordinates.y };
   }
 }
