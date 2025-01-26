@@ -25,27 +25,38 @@ The application processes input data such as enemy coordinates and protocols (e.
 
 ## Installation instructions:
 
-### Step 1: Clone the repository
+### Step 1: Clone the repository 🚀
 ```
 git clone https://github.com/ivancardozo11/TargetR.git
 ```
-### Step 2: Install dependencies
+### Step 2: Install dependencies 📦
 
 Navigate to the project directory and install all required packages:
 `cd path/to/TargetR`
 ```
 npm install
 ```
-### Step 3: Run the app server
+### Step 3: Run the app server👨‍💻
 Start the development environment for testing and debugging:
 ```
-npm run start
+npm run start 
 ```
 
-### Additionally you can run test manually: Run tests
+### Additionally you can run test manually✅
 To verify the app functionality with unit and integration tests:
 ```
 npm run test
+```
+
+### To use it with docker 🐳
+Create the docker image:
+```
+docker build -t targetr:latest . --no-cache
+```
+
+Launch the Docker container
+```
+docker run -p 8888:8888 targetr:latest
 ```
 # API Highlights:
 
